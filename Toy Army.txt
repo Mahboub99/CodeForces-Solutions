@@ -1,0 +1,17 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <string>
+#include <set>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+	cout << n * 1.5;
+	return 0;
+}

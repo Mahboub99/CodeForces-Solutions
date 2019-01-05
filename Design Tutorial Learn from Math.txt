@@ -1,0 +1,50 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <string>
+#include <set>
+#include <math.h>
+
+using namespace std;
+
+bool Prime(int);
+
+int main()
+{
+	int n, a, b; 
+	cin >> n;
+	if (n % 2 == 0)
+		a = b = n / 2;
+	else
+	{
+		a = n / 2;
+		b = a + 1;
+	}
+	while (1)
+	{
+		if (!Prime(a) && !Prime(b))
+		{
+			cout << a << ' ' << b;
+			return 0;
+		}
+		a--;
+		b++;
+	}
+	return 0;
+}
+
+bool Prime(int n)
+{
+	if (n < 2)
+		return 0;
+	if (n == 2)
+		return 1;
+	for (int i = 2; i * i <= n; i++)
+	{
+		if (n % i == 0)
+			return 0;
+	}
+	return 1;
+	
+}

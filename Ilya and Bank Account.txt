@@ -1,0 +1,27 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <string>
+#include <set>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+	int n, a, b, remain;
+	cin >> n;
+	if (n > 0)
+		cout << n;
+	else
+	{
+		a = n / 10;
+		remain = n % 10;
+		b = (n / 100) * 10 + remain;
+		if (a > b)
+			cout << a;
+		else cout << b;
+	}
+	return 0;
+}

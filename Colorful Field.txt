@@ -1,0 +1,43 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <set>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+	int n, m, k, t;
+	cin >> n >> m >> k >> t;
+	vector<int> poor(k + 1);
+	poor[k] = INT_MAX;
+	int tmp1, tmp2;
+	for (int i = 0; i < k; i++)
+	{
+		cin >> tmp1 >> tmp2;
+		poor[i] = ((tmp1 - 1) * m) + tmp2 ;
+	}
+	sort(poor.begin(), poor.end());
+	int cvt, lo;
+	for (int i = 0; i < t; i++)
+	{
+		cin >> tmp1 >> tmp2;
+		cvt = (tmp1-1) * m + tmp2;
+		lo = lower_bound(poor.begin(), poor.end(), cvt) - poor.begin();
+		if (lo > k) lo = k;
+		if (poor[lo] == cvt)
+			cout << "Waste" << endl;
+		else
+		{
+			if ((cvt - lo) % 3 == 1)
+				cout << "Carrots" << endl;
+			else if ((cvt - lo) % 3 == 2)
+				cout << "Kiwis" << endl;
+			else if((cvt - lo) % 3 == 0)
+				cout << "Grapes" << endl;
+		}
+	}
+	return 0;
+}
