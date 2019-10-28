@@ -9,34 +9,47 @@ using namespace std;
 
 int main()
 {
-	int n, m, k, t;
-	cin >> n >> m >> k >> t;
-	vector<int> poor(k + 1);
-	poor[k] = INT_MAX;
-	int tmp1, tmp2;
-	for (int i = 0; i < k; i++)
+	ll n, m, k, t ,a,b;
+	cin >> n >> m >> k >> t; 
+ 
+	vector<ll >vec(k);
+	
+	for (int i = 0; i <  k; i++)
 	{
-		cin >> tmp1 >> tmp2;
-		poor[i] = ((tmp1 - 1) * m) + tmp2 ;
+		cin >> a >> b;
+		a--, b--;
+		vec[i] = a*m + b;
 	}
-	sort(poor.begin(), poor.end());
-	int cvt, lo;
+	sort(vec.begin(), vec.end());
+ 
 	for (int i = 0; i < t; i++)
 	{
-		cin >> tmp1 >> tmp2;
-		cvt = (tmp1-1) * m + tmp2;
-		lo = lower_bound(poor.begin(), poor.end(), cvt) - poor.begin();
-		if (lo > k) lo = k;
-		if (poor[lo] == cvt)
-			cout << "Waste" << endl;
-		else
+		cin >> a >> b;
+		a--, b--;
+		ll x = a*m + b;
+		ll targrt=-1;
+		for (int j = 0; j < k; j++)
 		{
-			if ((cvt - lo) % 3 == 1)
-				cout << "Carrots" << endl;
-			else if ((cvt - lo) % 3 == 2)
-				cout << "Kiwis" << endl;
-			else if((cvt - lo) % 3 == 0)
-				cout << "Grapes" << endl;
+			if (vec[j] <= x)
+			{
+				targrt = j ;
+			}
+		}
+		ll ans = x;
+		if (targrt > -1) ans+= -(targrt+1);
+		ans %= 3;
+ 
+		if (targrt>-1 &&x == vec[targrt])
+			cout << "Waste" << endl;
+		else if (ans == 0)
+			cout << "Carrots" << endl;
+		else if (ans == 1)
+			cout << "Kiwis" << endl;
+		else if (ans == 2)
+			cout << "Grapes" << endl;
+	}
+	return 0;
+}
 		}
 	}
 	return 0;
